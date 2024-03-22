@@ -39,12 +39,18 @@ android {
 }
 
 dependencies {
+    implementation("androidx.core:core-ktx:1.12.0")
+    implementation("com.google.android.material:material:1.11.0")
+
     val composeBom = platform("androidx.compose:compose-bom:2024.03.00")
     implementation(composeBom)
     androidTestImplementation(composeBom)
     implementation("androidx.compose.material3:material3")
     implementation("androidx.activity:activity-compose:1.8.2")
 
-    implementation("androidx.core:core-ktx:1.12.0")
-    implementation("com.google.android.material:material:1.11.0")
+    val ktorVersion = "2.3.9"
+    implementation("io.ktor:ktor-client-core:$ktorVersion")
+    implementation("io.ktor:ktor-client-android:$ktorVersion")
+    implementation("io.ktor:ktor-client-serialization:$ktorVersion")
+    implementation("io.ktor:ktor-client-logging:$ktorVersion")
 }
