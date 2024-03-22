@@ -1,13 +1,14 @@
 const express = require('express')
+const {LOREM} = require("./strings");
 const app = express()
 const port = 3000
 
 
 app.get('/tasks', (req, res) => {
   res.json([
-    { id: '1', content: 'Discover cache', status:'TO_DO'},
-    { id: '2', content: 'Watching this video', status:'DOING'},
-    { id: '3', content: 'Add to my Flutter app', status:'DONE'}
+    { id: '1', content: LOREM, status:'TO_DO'},
+    { id: '2', content: LOREM, status:'DOING'},
+    { id: '3', content: LOREM, status:'DONE'}
   ])
 })
 
