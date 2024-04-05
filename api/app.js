@@ -1,8 +1,10 @@
 const express = require('express')
-const {LOREM} = require("./strings");
+const compression = require('compression')
+const {LOREM} = require("./strings")
 const app = express()
 const port = 3000
 
+app.use(compression())
 
 app.get('/tasks', (req, res) => {
   res.json([
