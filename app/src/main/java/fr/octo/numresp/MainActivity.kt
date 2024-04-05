@@ -12,10 +12,14 @@ import androidx.compose.runtime.rememberCoroutineScope
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.plugins.cache.HttpCache
+import io.ktor.client.plugins.cache.storage.FileStorage
+import io.ktor.client.plugins.cookies.CookiesStorage
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
+import io.ktor.http.ContentDisposition.Companion.File
 import kotlinx.coroutines.launch
+import java.io.File
 
 class MainActivity : ComponentActivity() {
     private lateinit var httpClient: HttpClient
@@ -24,7 +28,10 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         httpClient = HttpClient(OkHttp) {
-            install(HttpCache)
+            install(HttpCache) {
+                val cacheFile = File(application.cacheDir, "http_cache")
+                publicStorage(FileStorage(cacheFile))
+            }
             install(Logging) {
                 logger = CustomAndroidHttpLogger
                 level = LogLevel.ALL
