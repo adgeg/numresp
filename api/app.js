@@ -15,7 +15,7 @@ app.get('/tasks', (req, res) => {
 })
 
 app.get('/tasks-cached', function (req, res, next) {
-  res.header('Cache-control', `max-age=20`)
+  res.header('Cache-control', `max-age=30`)
   next();
 }, function (req, res, next) {
   console.log('REQUEST url', req.url)
